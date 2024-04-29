@@ -35,9 +35,12 @@ Route::get('form1', function(){
     return view('form1');
 });
 
-Route::post('recForm1', function(){
-    return 'Data received';
-})->name('receiveForm1');
+// Route::post('recForm1', function(){
+//     return 'Data received';
+// })->name('receiveForm1'); session2
+
+//task2
+Route::post('recForm1', [MyController::class, 'receiveForm1'])->name('receiveForm1');
 
 // Route::fallback(function(){
 //     // return 'The required is not found';
