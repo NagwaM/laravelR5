@@ -9,7 +9,8 @@ Route::get('/', function () {
 });
 
 Route::post('insertClient',[ClientController::class, 'store'])->name('insertClient');
-Route::get('addClient',[ClientController::class, 'create']);
+Route::get('addClient',[ClientController::class, 'create'])->name('addClient');
+Route::get('clients',[ClientController::class, 'index'])->name('clients');
 
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;
