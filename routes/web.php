@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
+use App\Http\Controllers\ClientController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('insertClient',[ClientController::class, 'store'])->name('insertClient');
+Route::get('addClient',[ClientController::class, 'create']);
 
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;
