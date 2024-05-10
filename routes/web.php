@@ -15,8 +15,11 @@ Route::get('clients',[ClientController::class, 'index'])->name('clients');
 
 //task3
 Route::post('insertStudent',[StudentController::class, 'store'])->name('insertStudent');
-Route::get('showStudent',[StudentController::class, 'create'])->name('showStudents');
+Route::get('showStudent',[StudentController::class, 'create'])->name('showStudent');
 //end of task3
+
+//task4
+Route::get('students',[StudentController::class, 'index'])->name('students');
 
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;

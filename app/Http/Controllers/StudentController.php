@@ -7,12 +7,14 @@ use App\Models\student;
 
 class StudentController extends Controller
 {
+    private $columns = ['studenttName','age'];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $students = Student::get();
+        return view('students', compact('students'));
     }
 
     /**
@@ -28,11 +30,13 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        $student = new Student();
-        $student->studenttName = $request->studenttName;
-        $student->age = $request->age;
-        $student->save();
-        return "Inserted Successfully";
+        // $student = new Student();
+        // $student->studenttName = $request->studenttName;
+        // $student->age = $request->age;
+        // $student->save();
+        // return "Inserted Successfully";
+        Student::create($request->only($this->columns));
+        return redirect('students');
     }
 
     /**
