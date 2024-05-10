@@ -3,18 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Client;
+use App\Models\student;
 
-class ClientController extends Controller
+class StudentController extends Controller
 {
-    private $columns = ['clientName','phone', 'email','website'];
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $clients = Client::get();
-        return view('clients', compact('clients'));
+        //
     }
 
     /**
@@ -22,7 +20,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        return view('addClient');
+        return view('showStudent');
     }
 
     /**
@@ -30,15 +28,11 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-        // $client = new Client();
-        // $client->clientName = $request->clientName;
-        // $client->phone = $request->phone;
-        // $client->email = $request->email;
-        // $client->website = $request->website;
-        // $client->save();
-        //return "Inserted Successfully";
-        Client::create($request->only($this->columns));
-        return redirect('clients');
+        $student = new Student();
+        $student->studenttName = $request->studenttName;
+        $student->age = $request->age;
+        $student->save();
+        return "Inserted Successfully";
     }
 
     /**

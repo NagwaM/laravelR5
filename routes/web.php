@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -11,6 +12,11 @@ Route::get('/', function () {
 Route::post('insertClient',[ClientController::class, 'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class, 'create'])->name('addClient');
 Route::get('clients',[ClientController::class, 'index'])->name('clients');
+
+//task3
+Route::post('insertStudent',[StudentController::class, 'store'])->name('insertStudent');
+Route::get('showStudent',[StudentController::class, 'create'])->name('showStudents');
+//end of task3
 
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;
