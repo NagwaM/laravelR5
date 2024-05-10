@@ -36,7 +36,7 @@ class ClientController extends Controller
         // $client->email = $request->email;
         // $client->website = $request->website;
         // $client->save();
-        return "Inserted Successfully";
+        //return "Inserted Successfully";
         Client::create($request->only($this->columns));
         return redirect('clients');
     }
