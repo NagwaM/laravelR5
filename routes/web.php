@@ -12,6 +12,11 @@ Route::get('/', function () {
 Route::post('insertClient',[ClientController::class, 'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class, 'create'])->name('addClient');
 Route::get('clients',[ClientController::class, 'index'])->name('clients');
+//session_5
+Route::get('editClient/{id}',[ClientController::class, 'edit'])->name('editClient');
+Route::put('updateClient/{id}',[ClientController::class, 'update'])->name('updateClient');
+Route::get('showClient/{id}',[ClientController::class, 'show'])->name('showClient');
+Route::delete('deleteClient',[ClientController::class, 'destroy'])->name('deleteClient');
 
 //task3
 Route::post('insertStudent',[StudentController::class, 'store'])->name('insertStudent');
