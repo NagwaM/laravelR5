@@ -26,7 +26,7 @@
   
 <form action="{{ route('insertStudent') }}" method="POST">
   @csrf
-  <label for="clientName">Student Name:</label><br>
+  <label for="studenttName">Student Name:</label><br>
   <input type="text" id="studenttName" name="studenttName" class="form-control"><br>
   <label for="phone">Age:</label><br>
   <input type="text" id="age" name="age" class="form-control"><br><br>
