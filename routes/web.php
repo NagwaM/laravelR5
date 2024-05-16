@@ -20,11 +20,17 @@ Route::delete('deleteClient',[ClientController::class, 'destroy'])->name('delete
 
 //task3
 Route::post('insertStudent',[StudentController::class, 'store'])->name('insertStudent');
-Route::get('showStudent',[StudentController::class, 'create'])->name('showStudent');
+Route::get('addStudent',[StudentController::class, 'create'])->name('addStudent');
 //end of task3
 
 //task4
 Route::get('students',[StudentController::class, 'index'])->name('students');
+
+//task5
+Route::get('editStudent/{id}',[ClientController::class, 'edit'])->name('editStudent');
+Route::put('updateStudent/{id}',[ClientController::class, 'update'])->name('updateStudent');
+Route::get('showStudent/{id}',[ClientController::class, 'show'])->name('showStudent');
+Route::delete('deleteStudent',[ClientController::class, 'destroy'])->name('deleteStudent');
 
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;
