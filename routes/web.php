@@ -32,6 +32,12 @@ Route::put('updateStudent/{id}',[StudentController::class, 'update'])->name('upd
 Route::get('showStudent/{id}',[StudentController::class, 'show'])->name('showStudent');
 Route::delete('deleteStudent',[StudentController::class, 'destroy'])->name('deleteStudent');
 
+//session_6
+Route::get('trashClient',[ClientController::class, 'trash'])->name('trashClient');
+Route::get('restoreClient/{id}',[ClientController::class, 'restore'])->name('restoreClient');
+Route::delete('delClient',[ClientController::class, 'destroy'])->name('delClient');
+Route::delete('forceDeleteClient',[ClientController::class, 'forceDelete'])->name('forceDeleteClient');
+
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;
 })->whereNumber('id');

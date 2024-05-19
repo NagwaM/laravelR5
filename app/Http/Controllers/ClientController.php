@@ -7,7 +7,8 @@ use App\Models\Client;
 
 class ClientController extends Controller
 {
-    private $columns = ['clientName','phone', 'email','website'];
+    //private $columns = ['clientName','phone', 'email','website'];
+
     /**
      * Display a listing of the resource.
      */
@@ -37,7 +38,13 @@ class ClientController extends Controller
         // $client->website = $request->website;
         // $client->save();
         //return "Inserted Successfully";
-        Client::create($request->only($this->columns));
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+        ]);
+        Client::create($data);
         return redirect('clients');
     }
 
@@ -77,5 +84,33 @@ class ClientController extends Controller
         $id = $request->id;
         Client::where('id', $id)->delete();
         return redirect('clients');
+    }
+
+    /**
+     * Trash.
+     */
+    public function trash()
+    {
+        $trashed = Client::onlyTrashed()->get();
+        return view('trashClient', compact('trashed'));
+    }
+
+    /**
+     * Restore.
+     */
+    public function restore(string $id)
+    {
+        Client::where('id', $id)->restore();
+        return redirect('clients');
+    }
+
+       /**
+     * Force Delete.
+     */
+    public function forceDelete(Request $request)
+    {
+        $id = $request->id;
+        Client::where('id', $id)->forceDelete();
+        return redirect('trashClient');
     }
 }
