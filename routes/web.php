@@ -38,6 +38,12 @@ Route::get('restoreClient/{id}',[ClientController::class, 'restore'])->name('res
 Route::delete('delClient',[ClientController::class, 'destroy'])->name('delClient');
 Route::delete('forceDeleteClient',[ClientController::class, 'forceDelete'])->name('forceDeleteClient');
 
+//task6
+Route::get('trashStudent',[StudentController::class, 'trash'])->name('trashStudent');
+Route::get('restoreStudent/{id}',[StudentController::class, 'restore'])->name('restoreStudent');
+Route::delete('delStudent',[StudentController::class, 'destroy'])->name('delStudent');
+Route::delete('forceDeleteStudent',[StudentController::class, 'forceDelete'])->name('forceDeleteStudent');
+
 Route::get('nagwa/{id?}', function($id = 0){
     return 'Welcome to my first website ' . $id;
 })->whereNumber('id');

@@ -29,7 +29,7 @@
   @csrf
   @method('put')
   <label for="studenttName">student name:</label><br>
-  <input type="text" id="studenttName" name="studenttName" class="form-control" value="{{ $student->studenttName }}"><br>
+  <input type="text" id="studentName" name="studentName" class="form-control" value="{{ $student->studentName }}"><br>
   <label for="age">Age:</label><br>
   <input type="text" id="age" name="age" class="form-control" value="{{ $student->age }}"><br><br>
   <input type="submit" value="Submit">

@@ -71,7 +71,13 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        Client::where('id', $id)->update($request->only($this->columns));
+        $data = $request->validate([
+            'clientName' => 'required|max:100|min:5',
+            'phone' => 'required|min:11',
+            'email' => 'required|email:rfc',
+            'website' => 'required',
+        ]);
+        Client::where('id', $id)->update($data);
         return redirect('clients');
 
     }

@@ -18,7 +18,7 @@
         <ul class="dropdown-menu">
           <li class="{{ request()->routeIs('students') ? 'active' : '' }}"><a href="{{ route('students') }}">Students Data</a></li>
           <li class="{{ request()->routeIs('addStudent') ? 'active' : '' }}"><a href="{{ route('addStudent') }}">Add Student</a></li>
-          <li><a href="page6.html">Page 2-3</a></li>
+          <li class="{{ request()->routeIs('trashStudent') ? 'active' : '' }}"><a href="{{ route('trashStudent') }}">Trashed Students</a></li>
         </ul>
       </li>
     </ul>
