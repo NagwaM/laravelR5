@@ -36,6 +36,31 @@
   <input type="email" id="email" name="email" class="form-control" value="{{ $client->email }}"><br><br>
   <label for="website">website:</label><br>
   <input type="text" id="website" name="website" class="form-control" value="{{ $client->website }}"><br><br>
+  <label for="city">City:</label><br>
+  <p style="color: red">
+    @error('city')
+     {{ $message }}
+    @enderror
+  </p>
+  <select name="city" id="city" class="form-control">
+    <option value="">Please Select City</option>  
+    <option value="Cairo" {{ old('city') == 'Cairo' ? 'selected' : ' ' }}>Cairo</option>
+    <option value="Giza" {{ old('city') == 'Giza' ? 'selected' : ' ' }}>Giza</option>
+    <option value="Alex" {{ old('city') == 'Alex' ? 'selected' : ' ' }}>Alex</option>
+  </select>
+  <br><br>
+  <label for="active">Active:</label><br>
+  <p style="color: red">
+    @error('active')
+     {{ $message }}
+    @enderror
+  </p>                                                                        
+  <input type="checkbox" id="active" name="active" class="form-control" value="1" {{ old('active') ? 'checked' : '' }}><br><br>
+
+  <p><img src="{{ asset('assets/images/' . $client->image) }}" alt=""></p>
+  <label for="image">Image:</label><br>
+  <input type="file" id="image" name="image" class="form-control"><br><br>
+
   <input type="submit" value="Submit">
 </form> 
 

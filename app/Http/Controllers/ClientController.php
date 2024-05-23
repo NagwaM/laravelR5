@@ -38,12 +38,25 @@ class ClientController extends Controller
         // $client->website = $request->website;
         // $client->save();
         //return "Inserted Successfully";
+
+        $messages = $this->errMsg();
+
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
-        ]);
+            'city' => 'required|max:30',
+        ], $messages);
+
+        $imgExt = $request->image->getClientOriginalExtension();
+        $fileName = time() . '.' . $imgExt;
+        $path = 'assets/images';
+        $request->image->move($path, $fileName);
+
+        $data['image'] = $fileName;
+        $data['active'] = isset($request->active);
+
         Client::create($data);
         return redirect('clients');
     }
@@ -76,6 +89,8 @@ class ClientController extends Controller
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
+            'city' => 'required|max:30',
+            'image' => 'required',
         ]);
         Client::where('id', $id)->update($data);
         return redirect('clients');
@@ -110,7 +125,7 @@ class ClientController extends Controller
         return redirect('clients');
     }
 
-       /**
+    /**
      * Force Delete.
      */
     public function forceDelete(Request $request)
@@ -118,5 +133,20 @@ class ClientController extends Controller
         $id = $request->id;
         Client::where('id', $id)->forceDelete();
         return redirect('trashClient');
+    }
+
+    /**
+     * error custom messages
+     */
+    public function errMsg(){
+        return [
+            'clientName' => 'The Client Name is Missed !!, Please Insert It',
+            'clientName.min' => 'Length is less than 5, Please Insert more Characters',
+            'phone' => 'The Phone Number is Missed !!, Please Insert It',
+            'phone.min' => 'Length in less than 11, Please Insert more Numbers',
+            'email' => 'The Email Address is Missed !!, Please Insert It',
+            'website' => 'The Website Name is Missed !!, Please Insert It',
+            'city' => 'The City is Missed !!, Please Choose One of the Available Options',
+        ];
     }
 }
