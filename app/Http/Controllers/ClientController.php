@@ -47,6 +47,7 @@ class ClientController extends Controller
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required|max:30',
+            'image' => 'sometimes|nullable|image|max:2048',
         ], $messages);
 
         $imgExt = $request->image->getClientOriginalExtension();
@@ -84,14 +85,38 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        //dd($request->all());
+        $messages = $this->errMsg();
+
         $data = $request->validate([
             'clientName' => 'required|max:100|min:5',
             'phone' => 'required|min:11',
             'email' => 'required|email:rfc',
             'website' => 'required',
             'city' => 'required|max:30',
-            'image' => 'required',
-        ]);
+            'image' => 'sometimes|nullable|image|max:2048',
+        ], $messages);
+
+        $client = Client::findOrFail($id);
+
+            // If a new image is uploaded, handle the file upload
+        //dd("Existing image:", $client->image);
+        if ($request->hasFile('image')) {
+            $imgExt = $request->image->getClientOriginalExtension();
+            $fileName = time() . '.' . $imgExt;
+            $path = 'assets/images';
+            //dd("File uploaded successfully", $fileName, $path);
+            $request->image->move($path, $fileName);
+            $data['image'] = $fileName;
+        } else {
+            // Keep the existing image if no new image is uploaded
+            $data['image'] = $client->image;
+        }
+
+        // If the active checkbox is not checked, it won't be present in the request
+        // So we explicitly check if it's set
+        $data['active'] = $request->has('active') ? 1 : 0;
+        //dd("New image:", $fileName);
         Client::where('id', $id)->update($data);
         return redirect('clients');
 

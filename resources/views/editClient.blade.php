@@ -25,7 +25,7 @@
 <div class="container" style="margin-left: 20px ">
   <h2>Edit Client</h2>
   
-<form action="{{ route('updateClient', $client->id ) }}" method="POST">
+<form action="{{ route('updateClient', $client->id ) }}" method="POST" enctype="multipart/form-data">
   @csrf
   @method('put')
   <label for="clientName">client name:</label><br>
@@ -44,9 +44,9 @@
   </p>
   <select name="city" id="city" class="form-control">
     <option value="">Please Select City</option>  
-    <option value="Cairo" {{ old('city') == 'Cairo' ? 'selected' : ' ' }}>Cairo</option>
-    <option value="Giza" {{ old('city') == 'Giza' ? 'selected' : ' ' }}>Giza</option>
-    <option value="Alex" {{ old('city') == 'Alex' ? 'selected' : ' ' }}>Alex</option>
+    <option value="Cairo" {{ old('city', $client->city) == 'Cairo' ? 'selected' : '' }}>Cairo</option>
+    <option value="Giza" {{ old('city', $client->city) == 'Giza' ? 'selected' : '' }}>Giza</option>
+    <option value="Alex" {{ old('city', $client->city) == 'Alex' ? 'selected' : '' }}>Alex</option>
   </select>
   <br><br>
   <label for="active">Active:</label><br>
@@ -55,7 +55,7 @@
      {{ $message }}
     @enderror
   </p>                                                                        
-  <input type="checkbox" id="active" name="active" class="form-control" value="1" {{ old('active') ? 'checked' : '' }}><br><br>
+  <input type="checkbox" id="active" name="active" class="form-control"value="1" {{ $client->active ? 'checked' : '' }}><br><br>
 
   <p><img src="{{ asset('assets/images/' . $client->image) }}" alt=""></p>
   <label for="image">Image:</label><br>
