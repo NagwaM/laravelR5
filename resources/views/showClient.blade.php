@@ -19,6 +19,6 @@
     <hr>
     <h1><strong>Active: </strong>{{ $client->active ? 'Yes': 'No' }}</h1>
     <hr>
-    <p><img src="{{ asset('assets/images/' . $client->image) }}" alt=""></p>
+    <p><img src="{{ asset('assets/images/' . $client->image) }}" alt="" style="width: 300px"></p>
 </body>
 </html>

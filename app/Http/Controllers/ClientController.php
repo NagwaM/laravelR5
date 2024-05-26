@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Client;
+use App\Traits\UploadFile;
 
 class ClientController extends Controller
 {
+    use UploadFile;
     //private $columns = ['clientName','phone', 'email','website'];
 
     /**
@@ -50,10 +52,11 @@ class ClientController extends Controller
             'image' => 'sometimes|nullable|image|max:2048',
         ], $messages);
 
-        $imgExt = $request->image->getClientOriginalExtension();
-        $fileName = time() . '.' . $imgExt;
-        $path = 'assets/images';
-        $request->image->move($path, $fileName);
+        // $imgExt = $request->image->getClientOriginalExtension();
+        // $fileName = time() . '.' . $imgExt;
+        // $path = 'assets/images';
+        // $request->image->move($path, $fileName);
+        $fileName = $this->upload($request->image, 'assets/images');
 
         $data['image'] = $fileName;
         $data['active'] = isset($request->active);
@@ -102,11 +105,12 @@ class ClientController extends Controller
             // If a new image is uploaded, handle the file upload
         //dd("Existing image:", $client->image);
         if ($request->hasFile('image')) {
-            $imgExt = $request->image->getClientOriginalExtension();
-            $fileName = time() . '.' . $imgExt;
-            $path = 'assets/images';
-            //dd("File uploaded successfully", $fileName, $path);
-            $request->image->move($path, $fileName);
+            // $imgExt = $request->image->getClientOriginalExtension();
+            // $fileName = time() . '.' . $imgExt;
+            // $path = 'assets/images';
+            // //dd("File uploaded successfully", $fileName, $path);
+            // $request->image->move($path, $fileName);
+            $fileName = $this->upload($request->image, 'assets/images');
             $data['image'] = $fileName;
         } else {
             // Keep the existing image if no new image is uploaded
