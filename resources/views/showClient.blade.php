@@ -7,15 +7,15 @@
     <title>Show {{ $client->clientName }}</title>
 </head>
 <body>
-    <h1><strong>Client: </strong>{{ $client->clientName}}</h1>
+    <h1><strong>Client: </strong>{{ $client->clientName }}</h1>
     <hr>
-    <h2><strong>Phone: </strong>{{ $client->phone}}</h1>
+    <h2><strong>Phone: </strong>{{ $client->phone }}</h1>
     <hr>
-    <h1><strong>Email: </strong>{{ $client->email}}</h1>
+    <h1><strong>Email: </strong>{{ $client->email }}</h1>
     <hr>
-    <h1><strong>Website: </strong>{{ $client->website}}</h1>
+    <h1><strong>Website: </strong>{{ $client->website }}</h1>
     <hr>
-    <h1><strong>City: </strong>{{ $client->city}}</h1>
+    <h1><strong>City: </strong>{{ $client->city->cityName }}</h1>
     <hr>
     <h1><strong>Active: </strong>{{ $client->active ? 'Yes': 'No' }}</h1>
     <hr>

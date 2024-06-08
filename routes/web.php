@@ -6,7 +6,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('stacked');
 });
 
 Route::post('insertClient',[ClientController::class, 'store'])->name('insertClient');

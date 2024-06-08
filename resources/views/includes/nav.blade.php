@@ -21,6 +21,8 @@
           <li class="{{ request()->routeIs('trashStudent') ? 'active' : '' }}"><a href="{{ route('trashStudent') }}">Trashed Students</a></li>
         </ul>
       </li>
+      @yield('menu')
+      @stack('submenu')
     </ul>
   </div>
 </nav>
