@@ -9,9 +9,13 @@ Route::get('/', function () {
     return view('stacked');
 });
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::post('insertClient',[ClientController::class, 'store'])->name('insertClient');
 Route::get('addClient',[ClientController::class, 'create'])->name('addClient');
-Route::get('clients',[ClientController::class, 'index'])->name('clients');
+Route::get('clients',[ClientController::class, 'index'])->middleware('verified')->name('clients');
 //session_5
 Route::get('editClient/{id}',[ClientController::class, 'edit'])->name('editClient');
 Route::put('updateClient/{id}',[ClientController::class, 'update'])->name('updateClient');
@@ -83,3 +87,6 @@ Route::post('recForm1', [MyController::class, 'receiveForm1'])->name('receiveFor
 //     // return 'The required is not found';
 //     return redirect('/');
 // });
+Auth::routes(['verify'=>true]);
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
