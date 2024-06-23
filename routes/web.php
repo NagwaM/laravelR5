@@ -5,6 +5,12 @@ use App\Http\Controllers\MyController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\StudentController;
 
+Route::group(
+    [
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+    ], function(){
+
 Route::get('/', function () {
     return view('stacked');
 });
@@ -95,3 +101,4 @@ Route::get('mySession', [MyController::class, 'myVal']);
 Route::get('restoreSession', [MyController::class, 'restoreVal']);
 Route::get('deleteSession', [MyController::class, 'deleteVal']);
 Route::get('sendClientMail', [MyController::class, 'sendClientMail']);
+});

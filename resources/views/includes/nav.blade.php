@@ -24,6 +24,10 @@
       @yield('menu')
       @stack('submenu')
     </ul>
+    <div>
+    <a href="{{ LaravelLocalization::getLocalizedURL('en') }}">English</a>
+    <a href="{{ LaravelLocalization::getLocalizedURL('ar') }}">Arabic</a>
+    </div>
   </div>
 </nav>
 <!-- End Nav bar -->
