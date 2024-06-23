@@ -90,3 +90,8 @@ Route::post('recForm1', [MyController::class, 'receiveForm1'])->name('receiveFor
 Auth::routes(['verify'=>true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('mySession', [MyController::class, 'myVal']);
+Route::get('restoreSession', [MyController::class, 'restoreVal']);
+Route::get('deleteSession', [MyController::class, 'deleteVal']);
+Route::get('sendClientMail', [MyController::class, 'sendClientMail']);
